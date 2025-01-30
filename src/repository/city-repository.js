@@ -7,7 +7,9 @@ class CityRepository{
             const city = await City.create({ name });
             return city;
         } catch(error) {
-            throw error;
+            console.log("Something is wrong in the repository layer");
+            throw error ;
+           
         }
     } 
     async deleteCity(cityId) {
@@ -18,6 +20,8 @@ class CityRepository{
                 }
             })
         } catch(error) {
+            console.log("Something is wrong in the repository layer");
+           
             throw error;
         }
     }
@@ -25,14 +29,17 @@ class CityRepository{
     async updateCity(cityId,data) {
         try {
             const city = await City.update(
-                {name:data},{
+                data,{
                     where :{
                         id : cityId
                     }
                 }
             )
+            console.log(city);
             return city;
         } catch(error) {
+            console.log("Something is wrong in the repository layer");
+            
             throw error;
         }
     }
@@ -41,6 +48,7 @@ class CityRepository{
             const city = await City.findByPk(cityId);
             return city;
         } catch(error) {
+            console.log("Something is wrong in the repository layer");
             throw error ;
         }
     }
