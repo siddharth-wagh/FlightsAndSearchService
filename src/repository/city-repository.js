@@ -7,7 +7,7 @@ class CityRepository{
             const city = await City.create({ name });
             return city;
         } catch(error) {
-            console.log("Something is wrong in the repository layer");
+            console.log("Something is wrong in the repository layer in create");
             throw error ;
            
         }
@@ -21,7 +21,7 @@ class CityRepository{
             })
             return true;
         } catch(error) {
-            console.log("Something is wrong in the repository layer");
+            console.log("Something is wrong in the repository layer in delete");
            
             throw error;
         }
@@ -29,17 +29,25 @@ class CityRepository{
 
     async updateCity(cityId,data) {
         try {
-            const city = await City.update(
-                data,{
-                    where :{
-                        id : cityId
-                    }
-                }
-            )
-            console.log(city);
+            //The below appproach also works but doesnt return updated object 
+            //If you are using pgsql then you can use returning true,else not.
+
+            // const city = await City.update(
+            //     data,{
+            //         where :{
+            //             id : cityId
+            //         }
+            //     }
+            // )
+            //returning :true
+            //plain:true
+
+            const city = await City.findByPk(cityId);
+            city.name = data.name;
+            await city.save();
             return city;
         } catch(error) {
-            console.log("Something is wrong in the repository layer");
+            console.log("Something is wrong in the repository layer in updatecity");
             
             throw error;
         }
@@ -49,7 +57,7 @@ class CityRepository{
             const city = await City.findByPk(cityId);
             return city;
         } catch(error) {
-            console.log("Something is wrong in the repository layer");
+            console.log("Something is wrong in the repository layer in getcity" );
             throw error ;
         }
     }

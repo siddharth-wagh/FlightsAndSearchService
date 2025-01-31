@@ -29,7 +29,7 @@ class CityService {
             const city = await this.cityRepository.updateCity(cityId,data);
             return city;
         } catch (error) {
-            console.log("Something is wrong in repository layer");
+            console.log("Something is wrong in repository layer in servies");
             throw error;
         }
     }
@@ -38,6 +38,7 @@ class CityService {
     async getCity(cityId) {
         try {
             const city = await this.cityRepository.getCity(cityId);
+            return city;
         } catch (error) {
             console.log("Something is wrong in repository layer");
             throw error;
