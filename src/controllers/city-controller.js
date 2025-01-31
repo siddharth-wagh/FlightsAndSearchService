@@ -90,11 +90,11 @@ const update = async (req,res) =>{
 
 const getAll = async (req,res) =>{
     try{
-        const cities = await cityService.getAllCities();
+        const cities = await cityService.getAllCities(req.query);
         return res.status(200).json({
             data:cities,
             success: true,
-            message: 'Succesfully updated a city',
+            message: 'Succesfully fetched all cities',
             err:{}
         });
     } catch (error) {
@@ -102,7 +102,7 @@ const getAll = async (req,res) =>{
         return res.status(500).json({
             data:{},
             success:false,
-            message: "Not able get all a city",
+            message: "Not able get all cities",
             err:error
         })
     }
