@@ -52,6 +52,18 @@ class CityRepository{
             throw error;
         }
     }
+
+    async getAllCities() {
+        try{
+            const cities = await City.findAll();
+            return cities;
+        } catch(error) {
+            console.log("Something is wrong in the repository layer");
+            
+            throw error;
+        }
+    }
+
     async getCity(cityId) {
         try {
             const city = await City.findByPk(cityId);
