@@ -51,7 +51,7 @@ const destroy = async (req,res) => {
 
 const get = async (req,res) => {
     try{
-        console.log(req.params.Id);
+       
         const airport = await airportService.getAirport(req.params.id);
         return res.status(200).json({
             data:airport,

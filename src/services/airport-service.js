@@ -29,6 +29,7 @@ class AirportService {
 
     async getAirport(airportId) {
         try{
+            
             const airport = await this.airportRepository.getAirport(airportId);
             return airport;
         } catch(error) {
