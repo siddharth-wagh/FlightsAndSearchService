@@ -98,11 +98,15 @@ class CityRepository{
 
     async getAllAirports(cityId) {
         try{
-            const airports = await Airport.findAll({
-                where:{
-                    cityId:cityId
-                }
-            });
+
+            // const airports = await Airport.findAll({
+            //     where:{
+            //         cityId:cityId
+            //     }
+            // });
+            // return airports;
+            const city = await City.findByPk(cityId);
+            const airports = await city.getAirports();
             return airports;
         } catch (error) {
             console.log("Something is wrong in the repository layer in getallairports" );
