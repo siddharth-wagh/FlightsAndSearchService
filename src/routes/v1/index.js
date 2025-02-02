@@ -5,6 +5,7 @@ const airportController = require('../../controllers/airport-controller');
 const router = express.Router();
 
 router.post('/city',cityController.create);
+router.post('/city/mul',cityController.createMul);
 router.delete('/city/:id',cityController.destroy);
 router.get('/city/:id',cityController.get);
 router.get('/city', cityController.getAll);
