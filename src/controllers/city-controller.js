@@ -107,10 +107,35 @@ const getAll = async (req,res) =>{
         })
     }
 }
+
+const getAllAirports = async (req,res) => {
+    try{
+        console.log("Hey there")
+        console.log(req.params.id);
+        
+        const airports = await cityService.getAllAirports(req.params.id);
+        return res.status(200).json({ 
+            data:airports,
+            success:true,
+            message:"succesfully found all the Airports",
+            error:{}
+        })
+    } catch(error) {
+        console.log("something wrong in getall controller city");
+        console.log(error);
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message:"Unable to get all airport succesfully",
+            error:{error}
+        })
+    }
+}
 module.exports = {
     create,
     destroy,
     get,
     update,
-    getAll
+    getAll,
+    getAllAirports
 }

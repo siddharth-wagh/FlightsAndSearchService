@@ -1,6 +1,6 @@
 const {City} = require('../models/index.js');
 const {Op} = require('sequelize');
-
+const {Airport} = require('../models/index.js');
 class CityRepository{
     
     async createCity({ name }) {
@@ -13,6 +13,7 @@ class CityRepository{
            
         }
     } 
+
     async deleteCity(cityId) {
         try{
             await City.destroy({
@@ -75,11 +76,26 @@ class CityRepository{
 
     async getCity(cityId) {
         try {
+           
             const city = await City.findByPk(cityId);
             return city;
         } catch(error) {
             console.log("Something is wrong in the repository layer in getcity" );
             throw error ;
+        }
+    }
+
+    async getAllAirports(cityId) {
+        try{
+            const airports = await Airport.findAll({
+                where:{
+                    cityId:cityId
+                }
+            });
+            return airports;
+        } catch (error) {
+            console.log("Something is wrong in the repository layer in getallairports" );
+            throw error;
         }
     }
 }
