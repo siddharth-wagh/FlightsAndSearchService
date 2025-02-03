@@ -39,8 +39,8 @@ module.exports = {
         allowNull:false
       },
       boardingGate: {
-        type: Sequelize.STRING,
-        allowNull:false
+        type: Sequelize.STRING
+        
       },
       totalSeats: {
         type: Sequelize.INTEGER,

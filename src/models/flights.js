@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model,DataTypes
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Flights extends Model {
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Flights.init({
     flightNumber:{
-      type:DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull:false,
       unique:true
     },
@@ -33,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false
     } ,
     arrivalTime: {
-      type:DataTypes.Date,
+      type:DataTypes.DATE,
       allowNull:false
     } ,
     departureTime: {
-      type:DataTypes.Date,
+      type:DataTypes.DATE,
       allowNull:false
     } ,
     price:{
