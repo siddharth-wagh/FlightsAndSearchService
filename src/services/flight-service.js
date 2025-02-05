@@ -13,11 +13,24 @@ class FlightService {
                 throw {error:"Arrival time should be greater than the departure time"};
             }
             const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
+            console.log(airplane);
             const flight = await this.flightRepository.createFlight({...data,totalSeats:airplane.capacity});
            
             return flight;
         } catch (error) {
             console.log("Something wrong in createflight in service layer");
+            throw error;
+        }
+    }
+
+    async getAllFlights(data) {
+        try {
+            const flights = this.flightRepository.getAllFlights(data);
+            
+            
+            return flights;
+        } catch (error) {
+            console.log("Something wrong in getallflight in service layer");
             throw error;
         }
     }
