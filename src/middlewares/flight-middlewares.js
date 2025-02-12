@@ -1,3 +1,5 @@
+const ClientErrorCodes = require('../utils/error-codes');
+
 const ValidateCreateFlight = (req,res,next) => {
     if(
         
@@ -11,7 +13,7 @@ const ValidateCreateFlight = (req,res,next) => {
         !req.body.boardingGate
     ) {
         console.log(req.body);
-        return res.status(400).json({
+        return res.status(ClientErrorCodes.BAD_REQUEST).json({
             data: {},
             status: false,
             message: "Invalid request body for create function",
