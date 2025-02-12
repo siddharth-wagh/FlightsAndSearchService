@@ -7,6 +7,7 @@ const router = express.Router();
 
 // Prefixing routes for clarity
 router.use('/city', cityRoutes);
+router.use('/newcity', cityRoutes);
 router.use('/airport', airportRoutes);
 router.use('/flights',flightRoutes);
 module.exports = router;

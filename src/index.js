@@ -1,10 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const CityRepo  = require('./repository/city-repository');
 const {PORT} = require("./config/serverConfig");
-const ApiRoutes = require('./routes/index');
-const {City,Airport} = require('./models/index');
+const ApiRoutes = require('./routes/index')
 const db = require('./models/index');
+
 
 const setupAndStartServer = async () => {
 
@@ -13,6 +12,7 @@ const setupAndStartServer = async () => {
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:true}));
+    app.use(express.static('public'));
 
     app.use('/api',ApiRoutes);
     
