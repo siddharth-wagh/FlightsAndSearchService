@@ -12,7 +12,7 @@ const ValidateCreateFlight = (req,res,next) => {
         !req.body.price ||
         !req.body.boardingGate
     ) {
-        console.log(req.body);
+        
         return res.status(ClientErrorCodes.BAD_REQUEST).json({
             data: {},
             status: false,

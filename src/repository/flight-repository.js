@@ -6,7 +6,7 @@ class FlightRepository {
         let filter = {};
         if(data.departureAirportId)
         {
-            filter.departureAirportI = data.departureAirportI;
+            filter.departureAirportId = data.departureAirportId;
         }
         if(data.arrivalAirportId)
         {
@@ -21,7 +21,7 @@ class FlightRepository {
                 }
             })
         }
-        console.log(pricefilter);
+        //console.log(pricefilter);
         if(data.maxPrice)
         {
             pricefilter.push({
@@ -30,9 +30,9 @@ class FlightRepository {
                 }
             })
         }
-        console.log(pricefilter);
+        //console.log(pricefilter);
         Object.assign(filter,{[Op.and] : pricefilter});
-        console.log(pricefilter,filter);
+        //console.log(pricefilter,filter);
         return filter;
     }
 
@@ -50,6 +50,7 @@ class FlightRepository {
 
     async getFlight(FlightId) {
         try{
+            console.log(FlightId);
             const flight = await Flights.findByPk(FlightId);                      
             return flight;
         } catch( error ) {
@@ -74,6 +75,22 @@ class FlightRepository {
         }
         
     }
+
+    async updateFlights(FLightId,data) {
+        try {
+            await Flights.update(data,{
+                where:{
+                    id:FLightId
+                }
+            })
+            
+            return true;
+        } catch (error) {
+            console.log("Something wrong in repo layer in getallFlight");
+            throw error;
+        }
+    }
+
 }
 
 module.exports = FlightRepository;

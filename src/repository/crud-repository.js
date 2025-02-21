@@ -74,6 +74,4 @@ class CrudRepository {
 
 }
 
-console.log(CrudRepository);
 module.exports = CrudRepository;
-console.log(module.exports);

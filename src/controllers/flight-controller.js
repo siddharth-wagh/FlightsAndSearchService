@@ -1,6 +1,7 @@
 const {FlightService} = require('../services/index');
 const flightService = new FlightService();
-const SuccessCodes = require('../utils/error-codes');
+const {SuccessCodes} = require('../utils/error-codes');
+
 const create = async (req,res) => {
     try {
         const data = {
@@ -21,7 +22,7 @@ const create = async (req,res) => {
             error:{}
         })
     } catch (error) {
-        console.log(error);
+      
         return res.status(500).json({
             data:{},
             success:false,
@@ -35,6 +36,7 @@ const create = async (req,res) => {
 const getAll = async (req,res) => {
     try {
         const flights = await flightService.getAllFlights(req.query);
+       
         return res.status(SuccessCodes.OK).json({
             data:flights,
             success:true,
@@ -52,7 +54,54 @@ const getAll = async (req,res) => {
     }
     
 }
+const get = async (req,res) => {
+    try {
+        const flight = await flightService.getFlight(req.params.id);
+        console.log(flight,typeof flight);
+        return res.status(SuccessCodes.OK).json({
+            data:flight,
+            success:true,
+            message:"Flight fetched successfully",
+            error:{}
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message: "Not able get the flight",
+            error:error
+        })
+    }
+    
+}
+const update = async (req,res) => {
+    try {
+        console.log(req.params.id,req.body);
+        const response = await flightService.updateFlight(req.params.id,req.body);
+        
+        return res.status(SuccessCodes.OK).json({
+            data:response,
+            success:true,
+            message:"Flight updated successfully",
+            error:{}
+        })
+    } catch (error) {
+        
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message: "Not able to update the flight",
+            error:error
+        })
+    }
+    
+}
+
+
 module.exports = {
     create,
-    getAll
+    getAll,
+    get,
+    update
 }
